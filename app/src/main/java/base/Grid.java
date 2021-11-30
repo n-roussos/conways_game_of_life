@@ -4,7 +4,6 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 public class Grid {
@@ -27,11 +26,35 @@ public class Grid {
         final Table<Integer, Integer, Cell> aliveCellsHashTable = HashBasedTable.create();
         aliveCells.forEach(a -> aliveCellsHashTable.put(a.getPositionX(), a.getPositionY(), a));
 
-
+        final List<Cell> nextAliveCells = new ArrayList<>();
         for (int x = gridBoundaryPoints[0].getX(); x <= gridBoundaryPoints[1].getX(); x++) {
             for (int y = gridBoundaryPoints[0].getY(); y <= gridBoundaryPoints[1].getY(); y++) {
                 int numberOfAliveNeighbors = 0;
-                
+
+                final List<Point> neighbors = new ArrayList<>();
+                neighbors.add(new Point(x - 1, y + 1));
+                neighbors.add(new Point(x - 1, y));
+                neighbors.add(new Point(x - 1, y - 1));
+                neighbors.add(new Point(x, y + 1));
+                neighbors.add(new Point(x, y - 1));
+                neighbors.add(new Point(x + 1, y + 1));
+                neighbors.add(new Point(x + 1, y));
+                neighbors.add(new Point(x + 1, y - 1));
+
+                for (Point neighbor : neighbors) {
+                    if (aliveCellsHashTable.contains(neighbor.getX(), neighbor.getY())) {
+                        numberOfAliveNeighbors++;
+                    }
+                }
+
+
+                Cell cell = aliveCellsHashTable.get(x, y);
+                if (numberOfAliveNeighbors == 3 || (numberOfAliveNeighbors == 2 && cell != null)) {
+                    if (cell == null) {
+                        cell = new Cell(new Point(x, y), true);
+                    }
+                    nextAliveCells.add(cell);
+                }
             }
         }
     }

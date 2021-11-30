@@ -12,4 +12,12 @@ public class Cell {
     public Cell(Point coordinates){
         this(coordinates, false);
     }
+
+    public int getPositionX(){
+        return coordinates.getX();
+    }
+
+    public int getPositionY(){
+        return coordinates.getY();
+    }
 }

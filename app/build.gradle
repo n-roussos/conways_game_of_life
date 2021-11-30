@@ -16,12 +16,25 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    versions = [
+            slf4j                     : "1.7.30",
+            log4j                     : "2.13.3",
+            immutables                : "2.8.8",
+    ]
+}
+
+
 dependencies {
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13.2'
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1.1-jre'
+
+    implementation 'org.slf4j:slf4j-api:' + versions.slf4j
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:' + versions.log4j
+    implementation 'org.apache.logging.log4j:log4j-core:' + versions.log4j
 }
 
 application {

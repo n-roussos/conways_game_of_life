@@ -10,6 +10,14 @@ public class AppTest {
 
 
     @Test
+    public void test1() {
+        final GameOfLife game = new GameOfLife();
+        game.start();
+    }
+
+
+
+    @Test
     public void testGui() {
         GraphicalUserInterface.run();
     }

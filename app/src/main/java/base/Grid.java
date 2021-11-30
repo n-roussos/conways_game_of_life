@@ -56,6 +56,7 @@ public class Grid {
                     nextAliveCells.add(cell);
                 }
             }
+            aliveCells = nextAliveCells;
         }
     }
 

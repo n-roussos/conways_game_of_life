@@ -87,8 +87,8 @@ public class Grid {
         int boundaryDown = maxY;
 
         Point[] gridBoundaryPoints = new Point[2];
-        gridBoundaryPoints[0] = new Point(boundaryLeft, boundaryUp);
-        gridBoundaryPoints[1] = new Point(boundaryRight, boundaryDown);
+        gridBoundaryPoints[0] = new Point(boundaryLeft - 1, boundaryUp - 1);
+        gridBoundaryPoints[1] = new Point(boundaryRight + 1, boundaryDown + 1);
 
         return gridBoundaryPoints;
     }

@@ -15,7 +15,7 @@ public class GraphicalUserInterface {
     private static Logger LOGGER = LoggerFactory.getLogger(GraphicalUserInterface.class);
 
 
-    public void drawGrid(List<Point> points) {
+    public void drawGrid(List<Point> alivePoints) {
         // TODO: draw alive points
     }
 

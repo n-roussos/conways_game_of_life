@@ -27,6 +27,7 @@ public class GameOfLife {
     public void start() {
         final List<Point> userAlivePoints = this.graphicalUserInterface.getUserSelection();
         this.grid.setAlivePoints(userAlivePoints);
+        this.graphicalUserInterface.drawGrid(userAlivePoints);
 
         int counter = 0;
         while (counter < 30) {

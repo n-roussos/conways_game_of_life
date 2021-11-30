@@ -47,10 +47,18 @@ public class Grid {
     }
 
     public List<Point> getAlivePoints(){
-        return new ArrayList<>();
+        List<Point> convertedPoints = cellsToPoints(aliveCells);
+        return convertedPoints;
     }
 
-//    private List<Point> cellsToPoints(){
-//        List<Point> points
-//    }
+    private List<Point> cellsToPoints(List<Cell> cells){
+        List<Point> points = new ArrayList<>();
+
+        for(Cell cell : cells){
+            Point convertedPoint = new Point(cell.getPositionX(), cell.getPositionY());
+            points.add(convertedPoint);
+        }
+
+        return points;
+    }
 }

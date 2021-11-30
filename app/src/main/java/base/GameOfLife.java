@@ -29,7 +29,7 @@ public class GameOfLife {
         this.grid.setAlivePoints(userAlivePoints);
 
         int counter = 0;
-        while (counter < 100) {
+        while (counter < 30) {
             counter++;
             LOGGER.debug("\nIteration: " + counter);
             updateGrid();

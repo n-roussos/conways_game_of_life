@@ -21,20 +21,18 @@ public class GameOfLife {
     }
 
 
+    /**
+     *
+     */
     public void start() {
         final List<Point> userAlivePoints = this.graphicalUserInterface.getUserSelection();
         this.grid.setAlivePoints(userAlivePoints);
 
-        int counter = 0 ;
-        while (true) {
+        int counter = 0;
+        while (counter < 100) {
             counter++;
             LOGGER.debug("\nIteration: " + counter);
             updateGrid();
-            LOGGER.debug("Updated grid");
-            final List<Point> alivePoints = this.grid.getState();
-            LOGGER.debug("Got alive points from grid");
-            this.graphicalUserInterface.drawGrid(alivePoints);
-            LOGGER.debug("Drew points");
 
             try {
                 Thread.sleep(500);
@@ -42,10 +40,23 @@ public class GameOfLife {
                 LOGGER.error(e.getMessage());
             }
         }
+        try {
+            Thread.sleep(5_000);
+        } catch (InterruptedException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
 
 
+    /**
+     * Updates grid to next state, gets its new state, and propagates it to the GUI.
+     */
     private void updateGrid() {
-        this.graphicalUserInterface.
+        this.grid.updateToNextIteration();
+        LOGGER.debug("Updated grid");
+        final List<Point> alivePoints = this.grid.getAlivePoints();
+        LOGGER.debug("Got alive points from grid");
+        this.graphicalUserInterface.drawGrid(alivePoints);
+        LOGGER.debug("Drew points");
     }
 }

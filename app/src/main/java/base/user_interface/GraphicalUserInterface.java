@@ -2,76 +2,64 @@ package base.user_interface;
 
 
 import base.Point;
+import base.user_interface.one.Layout;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class GraphicalUserInterface {
     private static Logger LOGGER = LoggerFactory.getLogger(GraphicalUserInterface.class);
-
+    Layout layout = new Layout();
 
     public void drawGrid(List<Point> alivePoints) {
         // TODO: draw alive points
+        alivePoints.forEach(a -> LOGGER.debug("Currently alive point: " + a.getX() + "," + a.getY()));
+        final Table<Integer, Integer, Boolean> tableOfCells = HashBasedTable.create();
+        alivePoints.forEach(a -> tableOfCells.put(a.getX(), a.getY(), true));
+
+        for (int y = -8; y < 8; y++) {
+            StringBuilder str1 = new StringBuilder();
+            for (int x = -8; x < 8; x++) {
+                String str2 = " ";
+                if (tableOfCells.contains(x, y)) {
+                    str2 = "X";
+                }
+                str1.append(str2);
+            }
+            LOGGER.info(str1.toString());
+        }
+
     }
 
 
     public List<Point> getUserSelection() {
         //TODO: Ask user for selection of alive points and return
-        return new ArrayList<>();
+        final List<Point> userSelection = new ArrayList<>();
+        return getDefaultPattern2();
     }
 
 
-
-    public static void run() {
-
-        //Creating the Frame
-        JFrame frame = new JFrame("Chat Frame");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 400);
-
-        //Creating the MenuBar and adding components
-        JMenuBar mb = new JMenuBar();
-        JMenu m1 = new JMenu("FILE");
-        JMenu m2 = new JMenu("Help");
-        mb.add(m1);
-        mb.add(m2);
-        JMenuItem m11 = new JMenuItem("Open");
-        JMenuItem m22 = new JMenuItem("Save as");
-        m1.add(m11);
-        m1.add(m22);
-
-        //Creating the panel at bottom and adding components
-        JPanel panel = new JPanel(); // the panel is not visible in output
-        JLabel label = new JLabel("Enter Text");
-        JTextField tf = new JTextField(10); // accepts upto 10 characters
-        JButton send = new JButton("Send");
-        JButton reset = new JButton("Reset");
-        panel.add(label); // Components Added using Flow Layout
-        panel.add(tf);
-        panel.add(send);
-        panel.add(reset);
-
-        // Text Area at the Center
-        JTextArea ta = new JTextArea();
-
-        //Adding Components to the frame.
-        frame.getContentPane().add(BorderLayout.SOUTH, panel);
-        frame.getContentPane().add(BorderLayout.NORTH, mb);
-        frame.getContentPane().add(BorderLayout.CENTER, ta);
-        frame.setVisible(true);
-
-        while (true) {
-            try {
-                ta.append("Testt! ");
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+    private List<Point> getDefaultPattern1() {
+        final List<Point> userSelection = new ArrayList<>();
+        userSelection.add(new Point(1, 1));
+        userSelection.add(new Point(2, 1));
+        userSelection.add(new Point(3, 1));
+        return userSelection;
     }
+
+
+    private List<Point> getDefaultPattern2() {
+        final List<Point> userSelection = new ArrayList<>();
+        userSelection.add(new Point(2, 0));
+        userSelection.add(new Point(1, 1));
+        userSelection.add(new Point(2, 1));
+        userSelection.add(new Point(3, 1));
+        return userSelection;
+    }
+
 }

@@ -10,6 +10,9 @@ import java.awt.event.WindowEvent;
 
 public class GoL {
     private static Logger LOGGER = LoggerFactory.getLogger(GoL.class);
+    private final GameOfLife game;
+    private final Container parent;
+    private final Canvas canvas;
 
     // five different seeds
     final int[][] line = new int[][]{{3, 3}, {3, 4}, {3, 5}};
@@ -35,16 +38,13 @@ public class GoL {
             {34, 44}, {35, 44}, {34, 42}, {35, 42}, {36, 42}, {35, 41}};
 
 
-    private final GameOfLife game;
-    private final Container parent;
-    private final Canvas canvas;
-
-    public static void main(String[] args) throws InterruptedException {
-        new GoL();
-    }
-
+    /**
+     * The only constructor.
+     *
+     * @throws InterruptedException
+     */
     public GoL() throws InterruptedException {
-        game = new GameOfLife(glider);
+        game = new GameOfLife(gliderGun);
 
         // Set-up the UI
         canvas = new MyCanvas();
@@ -53,19 +53,31 @@ public class GoL {
         parent.setVisible(true);
 
         // Playing the game
-        while (true) {
-//            game.start();
-            game.tick();
-
-            canvas.repaint();
-            Thread.sleep(100);
-        }
+        setInactive();
     }
+
+
+    private void setInactive() throws InterruptedException {
+        while (!game.isActive()) {
+            Thread.sleep(10);
+        }
+        setActive();
+    }
+
+    private void setActive() throws InterruptedException {
+        while (game.isActive()) {
+            game.tick();
+            canvas.repaint();
+            Thread.sleep(50);
+        }
+        setInactive();
+    }
+
 
     // The ui classes
     public class MyFrame extends Frame {
-        static final int width = 600; // width of frame
-        static final int height = 600; // height of frame
+        static final int width = 1400; // width of frame
+        static final int height = 850; // height of frame
 
         public MyFrame() {
             super("Conway's Game Of Life");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
-    private State previousState = State.DEAD;
+    private State savedState = State.DEAD;
     private State currentState = State.DEAD;
     private List<Cell> neighbors = new ArrayList<>();
 
@@ -15,7 +15,7 @@ public class Cell {
 
     public void setAlive() {
         this.currentState = State.ALIVE;
-        this.previousState = State.ALIVE;
+        this.savedState = State.ALIVE;
     }
 
 
@@ -23,15 +23,16 @@ public class Cell {
         this.neighbors.add(neighbor);
     }
 
+
     public void tick() {
-        this.previousState = this.currentState; // Save previous state, so that neighbors can use that to determine their transition
+        this.savedState = this.currentState; // Save previous state, so that neighbors can use that to determine their transition
         int neighborsAlive = 0;
         for (Cell neighbor : neighbors) {
             if (neighbor.isAlive()) {
                 neighborsAlive++;
             }
         }
-        if (neighborsAlive == 3 || (neighborsAlive == 2 && this.previousState == State.ALIVE)) {
+        if (neighborsAlive == 3 || (neighborsAlive == 2 && this.savedState == State.ALIVE)) {
             this.currentState = State.ALIVE;
         } else {
             this.currentState = State.DEAD;
@@ -39,7 +40,7 @@ public class Cell {
     }
 
     public boolean isAlive() {
-        return this.previousState.equals(State.ALIVE);
+        return this.savedState.equals(State.ALIVE);
     }
 }
 

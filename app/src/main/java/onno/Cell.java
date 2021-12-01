@@ -24,8 +24,12 @@ public class Cell {
     }
 
 
-    public void tick() {
+    public void saveCurrentState() {
         this.savedState = this.currentState; // Save previous state, so that neighbors can use that to determine their transition
+    }
+
+
+    public void tick() {
         int neighborsAlive = 0;
         for (Cell neighbor : neighbors) {
             if (neighbor.isAlive()) {
@@ -40,7 +44,7 @@ public class Cell {
     }
 
     public boolean isAlive() {
-        return this.savedState.equals(State.ALIVE);
+        return this.savedState == State.ALIVE;
     }
 }
 

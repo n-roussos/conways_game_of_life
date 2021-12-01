@@ -9,13 +9,14 @@ public class Cell {
     private List<Cell> neighbors = new ArrayList<>();
 
 
-    public Cell() {
-    }
-
-
     public void setAlive() {
         this.currentState = State.ALIVE;
         this.savedState = State.ALIVE;
+    }
+
+
+    public boolean isAlive() {
+        return this.savedState == State.ALIVE;
     }
 
 
@@ -43,12 +44,7 @@ public class Cell {
         }
     }
 
-    public boolean isAlive() {
-        return this.savedState == State.ALIVE;
+    enum State {
+        ALIVE, DEAD
     }
-}
-
-
-enum State {
-    ALIVE, DEAD
 }

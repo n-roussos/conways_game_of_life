@@ -12,7 +12,7 @@ public class GoL {
     private static Logger LOGGER = LoggerFactory.getLogger(GoL.class);
 
     // five different seeds
-    final int[][] line = new int[][]{{2, 2}, {2, 3}, {2, 4}};
+    final int[][] line = new int[][]{{3, 3}, {3, 4}, {3, 5}};
     final int[][] glider = new int[][]{{1, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}};
     final int[][] toadAndGlider = new int[][]{{41, 43}, {41, 44}, {41, 45}, {42, 42},
             {42, 43}, {42, 44}, {36, 35}, {37, 36}, {38, 34}, {38, 35}, {38, 36}};
@@ -44,7 +44,7 @@ public class GoL {
     }
 
     public GoL() throws InterruptedException {
-        game = new GameOfLife(line);
+        game = new GameOfLife(glider);
 
         // Set-up the UI
         canvas = new MyCanvas();
@@ -54,12 +54,11 @@ public class GoL {
 
         // Playing the game
         while (true) {
-            game.start();
+//            game.start();
             game.tick();
-//            game.print();
 
             canvas.repaint();
-            Thread.sleep(1_000);
+            Thread.sleep(100);
         }
     }
 

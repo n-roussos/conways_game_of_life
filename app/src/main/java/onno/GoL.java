@@ -45,13 +45,13 @@ public class GoL {
     public GoL() throws InterruptedException {
         game = new GameOfLife(gliderGun);
 
-        // setup the UI
+        // Set-up the UI
         canvas = new MyCanvas();
         parent = new MyFrame();
         parent.add(canvas);
         parent.setVisible(true);
 
-        // playing the game  
+        // Playing the game
         while (true) {
             game.tick();
 

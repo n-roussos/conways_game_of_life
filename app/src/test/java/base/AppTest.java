@@ -1,5 +1,6 @@
 package base;
 
+import onno.GoL;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +10,14 @@ public class AppTest {
 
 
     @Test
-    public void test1() {
+    public void testBase() {
         final GameOfLife game = new GameOfLife();
         game.start();
+    }
+
+
+    @Test
+    public void testOnno() throws InterruptedException {
+        new GoL();
     }
 }

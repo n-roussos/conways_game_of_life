@@ -10,6 +10,7 @@ public class GameOfLife {
     private final int GRID_SIZE_IN_CELLS = 500;
     private final int CELL_SIZE = 20;
     private Cell[][] grid;
+    private boolean active = false;
 
     public GameOfLife(int[][] input) {
         grid = new Cell[GRID_SIZE_IN_CELLS][GRID_SIZE_IN_CELLS];
@@ -49,6 +50,9 @@ public class GameOfLife {
 
 
     public void tick() {
+        if (!this.active) {
+            return;
+        }
         for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
             for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
                 grid[x][y].saveCurrentState();
@@ -63,12 +67,14 @@ public class GameOfLife {
 
 
     public void stop() {
-//        this.running = false;
+        LOGGER.debug("mouseExited");
+        this.active = false;
     }
 
 
     public void start() {
-//        this.running = true;
+        LOGGER.debug("mouseEntered");
+        this.active = true;
     }
 
 

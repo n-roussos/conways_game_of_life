@@ -34,7 +34,11 @@ public class GameOfLife {
             for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
-                        if (x + i < 0 || y + j < 0 || x + i >= GRID_SIZE_IN_CELLS || y + j >= GRID_SIZE_IN_CELLS) {
+                        if ((i == 0 && j == 0)
+                                || y + j < 0
+                                || x + i >= GRID_SIZE_IN_CELLS
+                                || y + j >= GRID_SIZE_IN_CELLS
+                                || x + i < 0) {
                             continue;
                         }
                         grid[x][y].addNeighbor(grid[x + i][y + j]);
@@ -49,6 +53,11 @@ public class GameOfLife {
         if (!this.running) {
             return;
         }
+//        for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
+//            for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
+//                grid[x][y].saveCurrentState();
+//            }
+//        }
         for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
             for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
                 grid[x][y].tick();

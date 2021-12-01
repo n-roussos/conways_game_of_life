@@ -53,24 +53,11 @@ public class GoL {
         parent.setVisible(true);
 
         // Playing the game
-        setInactive();
-    }
-
-
-    private void setInactive() throws InterruptedException {
-        while (!game.isActive()) {
-            Thread.sleep(10);
-        }
-        setActive();
-    }
-
-    private void setActive() throws InterruptedException {
-        while (game.isActive()) {
+        while (true) {
             game.tick();
             canvas.repaint();
             Thread.sleep(50);
         }
-        setInactive();
     }
 
 

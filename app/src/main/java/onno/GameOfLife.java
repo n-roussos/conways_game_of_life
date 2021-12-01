@@ -51,17 +51,16 @@ public class GameOfLife {
 
 
     public void tick() {
-        if (!this.isActive) {
-            return;
-        }
-        for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
-            for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
-                grid[x][y].saveCurrentState();
+        if (this.isActive) {
+            for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
+                for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
+                    grid[x][y].saveCurrentState();
+                }
             }
-        }
-        for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
-            for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
-                grid[x][y].tick();
+            for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
+                for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
+                    grid[x][y].tick();
+                }
             }
         }
     }

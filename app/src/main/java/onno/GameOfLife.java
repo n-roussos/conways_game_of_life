@@ -10,7 +10,6 @@ public class GameOfLife {
     private final int GRID_SIZE_IN_CELLS = 500;
     private final int CELL_SIZE = 20;
     private Cell[][] grid;
-    private boolean running = false;
 
     public GameOfLife(int[][] input) {
         grid = new Cell[GRID_SIZE_IN_CELLS][GRID_SIZE_IN_CELLS];
@@ -50,14 +49,11 @@ public class GameOfLife {
 
 
     public void tick() {
-        if (!this.running) {
-            return;
+        for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
+            for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
+                grid[x][y].saveCurrentState();
+            }
         }
-//        for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
-//            for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
-//                grid[x][y].saveCurrentState();
-//            }
-//        }
         for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
             for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
                 grid[x][y].tick();
@@ -67,12 +63,12 @@ public class GameOfLife {
 
 
     public void stop() {
-        this.running = false;
+//        this.running = false;
     }
 
 
     public void start() {
-        this.running = true;
+//        this.running = true;
     }
 
 
@@ -85,18 +81,4 @@ public class GameOfLife {
             }
         }
     }
-
-
-    public void print() {
-        for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
-            for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
-                if (grid[x][y].isAlive()) {
-                    LOGGER.info("X");
-                } else {
-                    LOGGER.info(" ");
-                }
-            }
-        }
-    }
-
 }

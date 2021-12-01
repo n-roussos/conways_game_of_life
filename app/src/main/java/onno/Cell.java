@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
-    private State savedState = State.DEAD;
-    private State currentState = State.DEAD;
+    private State state = new State();
     private final List<Cell> neighbors = new ArrayList<>();
 
 
     public void setAlive() {
-        this.currentState = State.ALIVE;
-        this.savedState = State.ALIVE;
+        this.state.current = SubState.ALIVE;
+        this.state.saved = SubState.ALIVE;
     }
 
 
     public boolean isAlive() {
-        return this.savedState == State.ALIVE;
+        return this.state.saved == SubState.ALIVE;
     }
 
 
@@ -26,25 +25,30 @@ public class Cell {
 
 
     public void saveCurrentState() {
-        this.savedState = this.currentState; // Save previous state, so that neighbors can use that to determine their transition
+        this.state.saved = this.state.current; // Save previous state, so that neighbors can use that to determine their transition
     }
 
 
-    public void tick() {
+    public void update() {
         int neighborsAlive = 0;
         for (Cell neighbor : neighbors) {
             if (neighbor.isAlive()) {
                 neighborsAlive++;
             }
         }
-        if (neighborsAlive == 3 || (neighborsAlive == 2 && this.savedState == State.ALIVE)) {
-            this.currentState = State.ALIVE;
+        if (neighborsAlive == 3 || (neighborsAlive == 2 && this.state.saved == SubState.ALIVE)) {
+            this.state.current = SubState.ALIVE;
         } else {
-            this.currentState = State.DEAD;
+            this.state.current = SubState.DEAD;
         }
     }
 
-    enum State {
+    enum SubState {
         ALIVE, DEAD
+    }
+    
+    private class State {
+        SubState saved = SubState.DEAD;
+        SubState current = SubState.DEAD;
     }
 }

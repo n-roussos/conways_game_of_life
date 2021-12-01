@@ -59,7 +59,7 @@ public class GameOfLife {
             }
             for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
                 for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
-                    grid[x][y].tick();
+                    grid[x][y].update();
                 }
             }
         }

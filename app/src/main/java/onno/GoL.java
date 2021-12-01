@@ -15,26 +15,26 @@ public class GoL {
     private final Canvas canvas;
 
     // five different seeds
-    final int[][] line = new int[][]{{3, 3}, {3, 4}, {3, 5}};
-    final int[][] glider = new int[][]{{1, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}};
-    final int[][] toadAndGlider = new int[][]{{41, 43}, {41, 44}, {41, 45}, {42, 42},
+    private final int[][] line = new int[][]{{3, 3}, {3, 4}, {3, 5}};
+    private final int[][] glider = new int[][]{{1, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}};
+    private final int[][] toadAndGlider = new int[][]{{41, 43}, {41, 44}, {41, 45}, {42, 42},
             {42, 43}, {42, 44}, {36, 35}, {37, 36}, {38, 34}, {38, 35}, {38, 36}};
-    final int[][] pentadecathlon = new int[][]{{35, 30}, {36, 30}, {37, 29}, {37, 31},
+    private final int[][] pentadecathlon = new int[][]{{35, 30}, {36, 30}, {37, 29}, {37, 31},
             {38, 30}, {39, 30}, {40, 30}, {41, 30}, {42, 29}, {42, 31}, {43, 30}, {44, 30}};
-    final int[][] grandParent = new int[][]{{53, 30}, {53, 31}, {52, 29}, {51, 29},
+    private final int[][] grandParent = new int[][]{{53, 30}, {53, 31}, {52, 29}, {51, 29},
             {50, 29}};
-    final int[][] Rpentomino = new int[][]{{30, 50}, {30, 51}, {30, 52}, {31, 50},
+    private final int[][] Rpentomino = new int[][]{{30, 50}, {30, 51}, {30, 52}, {31, 50},
             {29, 51}};
-    final int[][] gliderGun = new int[][]{
+    private final int[][] gliderGun = new int[][]{
             {1, 5}, {1, 6}, {2, 5}, {2, 6}, {35, 3}, {35, 4}, {36, 3}, {36, 4},// two blocks
             {11, 5}, {11, 6}, {11, 7}, {12, 4}, {12, 8}, {13, 3}, {13, 9}, {14, 3}, {14, 9}, {15, 6},
             {16, 4}, {16, 8}, {17, 5}, {17, 6}, {17, 7}, {18, 6},// left side of gun
             {21, 3}, {21, 4}, {21, 5}, {22, 3}, {22, 4}, {22, 5}, {23, 2}, {23, 6}, {25, 1}, {25, 2},
             {25, 6}, {25, 7}};      // right side of gun
-    final int[][] infiniteGrowth1 = new int[][]{{101, 101}, {101, 102}, {101, 103},
+    private final int[][] infiniteGrowth1 = new int[][]{{101, 101}, {101, 102}, {101, 103},
             {101, 105}, {102, 101}, {103, 104}, {103, 105}, {104, 102}, {104, 103}, {104, 105},
             {105, 101}, {105, 103}, {105, 105}};
-    final int[][] infiniteGrowth2 = new int[][]{{31, 48}, {31, 46}, {32, 46}, {33, 44},
+    private final int[][] infiniteGrowth2 = new int[][]{{31, 48}, {31, 46}, {32, 46}, {33, 44},
             {34, 44}, {35, 44}, {34, 42}, {35, 42}, {36, 42}, {35, 41}};
 
 

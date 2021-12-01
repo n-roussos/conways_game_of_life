@@ -2,19 +2,18 @@ package base.user_interface;
 
 
 import base.Point;
-import base.user_interface.one.Layout;
+//import base.user_interface.one.Layout;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GraphicalUserInterface {
     private static Logger LOGGER = LoggerFactory.getLogger(GraphicalUserInterface.class);
-    Layout layout = new Layout();
+//    Layout layout = new Layout();
 
     public void drawGrid(List<Point> alivePoints) {
         // TODO: draw alive points
@@ -40,7 +39,7 @@ public class GraphicalUserInterface {
     public List<Point> getUserSelection() {
         //TODO: Ask user for selection of alive points and return
         final List<Point> userSelection = new ArrayList<>();
-        return getDefaultPattern2();
+        return getDefaultPattern3();
     }
 
 
@@ -62,4 +61,13 @@ public class GraphicalUserInterface {
         return userSelection;
     }
 
+
+    private List<Point> getDefaultPattern3() {
+        final List<Point> userSelection = new ArrayList<>();
+        userSelection.add(new Point(0, 0));
+        userSelection.add(new Point(1, 1));
+        userSelection.add(new Point(2, 1));
+        userSelection.add(new Point(3, 1));
+        return userSelection;
+    }
 }

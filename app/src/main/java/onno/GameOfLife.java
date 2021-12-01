@@ -10,7 +10,7 @@ public class GameOfLife {
     private final int GRID_SIZE_IN_CELLS = 500;
     private final int CELL_SIZE = 20;
     private Cell[][] grid;
-    private boolean isActive = false;
+    private State state = State.INACTIVE;
 
 
     public GameOfLife(int[][] input) {
@@ -51,7 +51,7 @@ public class GameOfLife {
 
 
     public void tick() {
-        if (this.isActive) {
+        if (this.state == State.ACTIVE) {
             for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
                 for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
                     grid[x][y].saveCurrentState();
@@ -66,20 +66,15 @@ public class GameOfLife {
     }
 
 
-    public boolean isActive() {
-        return this.isActive;
-    }
-
-
     public void stop() {
         LOGGER.debug("mouseExited");
-        this.isActive = false;
+        this.state = State.INACTIVE;
     }
 
 
     public void start() {
         LOGGER.debug("mouseEntered");
-        this.isActive = true;
+        this.state = State.ACTIVE;
     }
 
 
@@ -92,4 +87,7 @@ public class GameOfLife {
             }
         }
     }
+
+
+    enum State {ACTIVE, INACTIVE}
 }

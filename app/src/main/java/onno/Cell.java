@@ -6,7 +6,7 @@ import java.util.List;
 public class Cell {
     private State savedState = State.DEAD;
     private State currentState = State.DEAD;
-    private List<Cell> neighbors = new ArrayList<>();
+    private final List<Cell> neighbors = new ArrayList<>();
 
 
     public void setAlive() {

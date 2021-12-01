@@ -1,17 +1,18 @@
 package onno;
 
-import java.awt.AWTEvent;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Frame;
-import java.awt.Graphics;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.event.MouseInputAdapter;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
-import javax.swing.event.MouseInputAdapter;
 
 public class GoL {
+    private static Logger LOGGER = LoggerFactory.getLogger(GoL.class);
+
     // five different seeds
+    final int[][] line = new int[][]{{2, 2}, {2, 3}, {2, 4}};
     final int[][] glider = new int[][]{{1, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}};
     final int[][] toadAndGlider = new int[][]{{41, 43}, {41, 44}, {41, 45}, {42, 42},
             {42, 43}, {42, 44}, {36, 35}, {37, 36}, {38, 34}, {38, 35}, {38, 36}};
@@ -43,7 +44,7 @@ public class GoL {
     }
 
     public GoL() throws InterruptedException {
-        game = new GameOfLife(gliderGun);
+        game = new GameOfLife(line);
 
         // Set-up the UI
         canvas = new MyCanvas();
@@ -53,10 +54,12 @@ public class GoL {
 
         // Playing the game
         while (true) {
+            game.start();
             game.tick();
+//            game.print();
 
             canvas.repaint();
-            Thread.sleep(80);
+            Thread.sleep(1_000);
         }
     }
 

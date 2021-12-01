@@ -1,17 +1,23 @@
 package onno;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.awt.*;
 
 public class GameOfLife {
-    private final int GRID_SIZE = 100;
+    private static Logger LOGGER = LoggerFactory.getLogger(GameOfLife.class);
+    private final int GRID_SIZE_IN_CELLS = 500;
+    private final int CELL_SIZE = 20;
     private Cell[][] grid;
+    private boolean running = false;
 
     public GameOfLife(int[][] input) {
-        grid = new Cell[GRID_SIZE][GRID_SIZE];
+        grid = new Cell[GRID_SIZE_IN_CELLS][GRID_SIZE_IN_CELLS];
 
         // Initializing the cells
-        for (int x = 0; x < GRID_SIZE; x++) {
-            for (int y = 0; y < GRID_SIZE; y++) {
+        for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
+            for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
                 grid[x][y] = new Cell();
             }
         }
@@ -24,10 +30,13 @@ public class GameOfLife {
         }
 
         // Adding their neighbors
-        for (int x = 1; x < GRID_SIZE - 1; x++) {
-            for (int y = 1; y < GRID_SIZE - 1; y++) {
-                for (int i = -1; i < 1; i++) {
-                    for (int j = -1; j < 1; j++) {
+        for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
+            for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+                        if (x + i < 0 || y + j < 0 || x + i >= GRID_SIZE_IN_CELLS || y + j >= GRID_SIZE_IN_CELLS) {
+                            continue;
+                        }
                         grid[x][y].addNeighbor(grid[x + i][y + j]);
                     }
                 }
@@ -35,23 +44,50 @@ public class GameOfLife {
         }
     }
 
+
     public void tick() {
-        for (int x = 0; x < GRID_SIZE; x++) {
-            for (int y = 0; y < GRID_SIZE; y++) {
+        if (!this.running) {
+            return;
+        }
+        for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
+            for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
                 grid[x][y].tick();
             }
         }
     }
 
-    public void stop() {
 
+    public void stop() {
+        this.running = false;
     }
+
 
     public void start() {
-
+        this.running = true;
     }
+
 
     public void draw(Graphics g) {
-        g.
+        for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
+            for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
+                if (grid[x][y].isAlive()) {
+                    g.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                }
+            }
+        }
     }
+
+
+    public void print() {
+        for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
+            for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
+                if (grid[x][y].isAlive()) {
+                    LOGGER.info("X");
+                } else {
+                    LOGGER.info(" ");
+                }
+            }
+        }
+    }
+
 }

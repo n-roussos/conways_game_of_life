@@ -8,7 +8,7 @@ import java.util.List;
  * Models a cell: its state, attributes and behaviour.
  */
 public class Cell {
-    private State state = new State();
+    private CellState state = new CellState();
     private final List<Cell> neighbors = new ArrayList<>();
 
 
@@ -16,8 +16,8 @@ public class Cell {
      * Depending on the starting pattern, a {@link Cell} may need to be initialized with the ALIVE state.
      */
     public void setAlive() {
-        this.state.current = State.SubState.ALIVE;
-        this.state.saved = State.SubState.ALIVE;
+        this.state.current = CellState.SubState.ALIVE;
+        this.state.saved = CellState.SubState.ALIVE;
     }
 
 
@@ -25,7 +25,7 @@ public class Cell {
      * @return true, if the cell is alive
      */
     public boolean isAlive() {
-        return this.state.saved == State.SubState.ALIVE;
+        return this.state.saved == CellState.SubState.ALIVE;
     }
 
 
@@ -57,10 +57,10 @@ public class Cell {
                 neighborsAlive++;
             }
         }
-        if (neighborsAlive == 3 || (neighborsAlive == 2 && this.state.saved == State.SubState.ALIVE)) {
-            this.state.current = State.SubState.ALIVE;
+        if (neighborsAlive == 3 || (neighborsAlive == 2 && this.state.saved == CellState.SubState.ALIVE)) {
+            this.state.current = CellState.SubState.ALIVE;
         } else {
-            this.state.current = State.SubState.DEAD;
+            this.state.current = CellState.SubState.DEAD;
         }
     }
 
@@ -68,7 +68,7 @@ public class Cell {
     /**
      * The state of a cell.
      */
-    private class State {
+    private class CellState {
         SubState saved = SubState.DEAD;
         SubState current = SubState.DEAD;
 

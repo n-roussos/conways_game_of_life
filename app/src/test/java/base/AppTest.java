@@ -10,14 +10,7 @@ public class AppTest {
 
 
     @Test
-    public void testBase() {
-        final GameOfLife game = new GameOfLife();
-        game.start();
-    }
-
-
-    @Test
-    public void testOnno() throws InterruptedException {
+    public void testRunGame() throws InterruptedException {
         new GoL();
     }
 }

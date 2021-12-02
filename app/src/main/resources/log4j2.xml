@@ -16,9 +16,9 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="debug">
+        <Root level="OFF">
             <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="LogToFile"/>
+<!--            <AppenderRef ref="LogToFile"/>-->
         </Root>
 <!--        <Logger name="package.class" level="WARN"/>-->
     </Loggers>

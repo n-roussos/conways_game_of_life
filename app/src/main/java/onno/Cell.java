@@ -16,8 +16,8 @@ public class Cell {
      * Depending on the starting pattern, a {@link Cell} may need to be initialized with the ALIVE state.
      */
     public void setAlive() {
-        this.state.current = SubState.ALIVE;
-        this.state.saved = SubState.ALIVE;
+        this.state.current = State.SubState.ALIVE;
+        this.state.saved = State.SubState.ALIVE;
     }
 
 
@@ -26,7 +26,7 @@ public class Cell {
      * @return true, if the cell is alive
      */
     public boolean isAlive() {
-        return this.state.saved == SubState.ALIVE;
+        return this.state.saved == State.SubState.ALIVE;
     }
 
 
@@ -57,20 +57,13 @@ public class Cell {
                 neighborsAlive++;
             }
         }
-        if (neighborsAlive == 3 || (neighborsAlive == 2 && this.state.saved == SubState.ALIVE)) {
-            this.state.current = SubState.ALIVE;
+        if (neighborsAlive == 3 || (neighborsAlive == 2 && this.state.saved == State.SubState.ALIVE)) {
+            this.state.current = State.SubState.ALIVE;
         } else {
-            this.state.current = SubState.DEAD;
+            this.state.current = State.SubState.DEAD;
         }
     }
 
-
-    /**
-     *
-     */
-    enum SubState {
-        ALIVE, DEAD
-    }
 
     /**
      * The state of a cell.
@@ -78,5 +71,9 @@ public class Cell {
     private class State {
         SubState saved = SubState.DEAD;
         SubState current = SubState.DEAD;
+
+        enum SubState {
+            ALIVE, DEAD
+        }
     }
 }

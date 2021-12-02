@@ -5,6 +5,10 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
+
+/**
+ * Produces the instance of a game.
+ */
 public class GameOfLife {
     private static Logger LOGGER = LoggerFactory.getLogger(GameOfLife.class);
     private final int GRID_SIZE_IN_CELLS = 500;

@@ -8,13 +8,17 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 
+
+/**
+ * Sets inputs and GUI, then starts the game (by creating an instance of {@link GameOfLife}).
+ */
 public class GoL {
     private static Logger LOGGER = LoggerFactory.getLogger(GoL.class);
     private final GameOfLife game;
     private final Container parent;
     private final Canvas canvas;
 
-    // five different seeds
+    // Default patterns
     private final int[][] line = new int[][]{{3, 3}, {3, 4}, {3, 5}};
     private final int[][] glider = new int[][]{{1, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}};
     private final int[][] toadAndGlider = new int[][]{{41, 43}, {41, 44}, {41, 45}, {42, 42},
@@ -36,6 +40,20 @@ public class GoL {
             {105, 101}, {105, 103}, {105, 105}};
     private final int[][] infiniteGrowth2 = new int[][]{{31, 48}, {31, 46}, {32, 46}, {33, 44},
             {34, 44}, {35, 44}, {34, 42}, {35, 42}, {36, 42}, {35, 41}};
+
+
+    /**
+     * Starts the game.
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        try {
+            new GoL();
+        } catch (final Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+    }
 
 
     /**
@@ -61,7 +79,9 @@ public class GoL {
     }
 
 
-    // The ui classes
+    /**
+     * UI class
+     */
     public class MyFrame extends Frame {
         static final int width = 1400; // width of frame
         static final int height = 850; // height of frame
@@ -82,6 +102,10 @@ public class GoL {
         }
     }
 
+
+    /**
+     * UI class
+     */
     public class MyCanvas extends Canvas {
         private final int width = 19000; // width of grid
         private final int height = 11000; // height of grid          

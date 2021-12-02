@@ -3,6 +3,10 @@ package onno;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Models a cell: its state, attributes and behaviour.
+ */
 public class Cell {
     private State state = new State();
     private final List<Cell> neighbors = new ArrayList<>();
@@ -42,6 +46,8 @@ public class Cell {
             this.state.current = SubState.DEAD;
         }
     }
+
+
 
     enum SubState {
         ALIVE, DEAD

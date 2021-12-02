@@ -1,4 +1,4 @@
-package onno;
+package com;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,6 @@ public class Cell {
 
 
     /**
-     *
      * @return true, if the cell is alive
      */
     public boolean isAlive() {
@@ -32,6 +31,7 @@ public class Cell {
 
     /**
      * Adds a neighbor {@link Cell} to this {@link Cell}.
+     *
      * @param neighbor
      */
     public void addNeighbor(final Cell neighbor) {

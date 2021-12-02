@@ -1,4 +1,4 @@
-package onno;
+package com;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,6 +98,7 @@ public class GameOfLife {
 
     /**
      * Grid's {@link Cell}s are drawn on the GUI.
+     *
      * @param g
      */
     public void draw(Graphics g) {

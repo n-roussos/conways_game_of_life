@@ -14,7 +14,7 @@ public class GameOfLife {
     private final int GRID_SIZE_IN_CELLS = 500;
     private final int CELL_SIZE = 20;
     private Cell[][] grid;
-    private State state = State.INACTIVE;
+    private GameState state = GameState.INACTIVE;
 
 
     /**
@@ -63,7 +63,7 @@ public class GameOfLife {
      * Transition to next state - triggers cells to move to their next state.
      */
     public void tick() {
-        if (this.state == State.ACTIVE) {
+        if (this.state == GameState.ACTIVE) {
             for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
                 for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
                     grid[x][y].saveCurrentState();
@@ -83,7 +83,7 @@ public class GameOfLife {
      */
     public void stop() {
         LOGGER.debug("mouseExited");
-        this.state = State.INACTIVE;
+        this.state = GameState.INACTIVE;
     }
 
 
@@ -92,7 +92,7 @@ public class GameOfLife {
      */
     public void start() {
         LOGGER.debug("mouseEntered");
-        this.state = State.ACTIVE;
+        this.state = GameState.ACTIVE;
     }
 
 
@@ -115,5 +115,5 @@ public class GameOfLife {
     /**
      * The two states of the game (running/paused).
      */
-    enum State {ACTIVE, INACTIVE}
+    enum GameState {ACTIVE, INACTIVE}
 }

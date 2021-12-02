@@ -17,7 +17,12 @@ public class GameOfLife {
     private State state = State.INACTIVE;
 
 
-    public GameOfLife(int[][] input) {
+    /**
+     * Initializes a Game of Life, creating all grid's {@link Cell}s and bringing them to life depending on the input pattern.
+     *
+     * @param input
+     */
+    public GameOfLife(final int[][] input) {
         grid = new Cell[GRID_SIZE_IN_CELLS][GRID_SIZE_IN_CELLS];
 
         // Initializing the cells
@@ -54,6 +59,9 @@ public class GameOfLife {
     }
 
 
+    /**
+     * Transition to next state - triggers cells to move to their next state.
+     */
     public void tick() {
         if (this.state == State.ACTIVE) {
             for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
@@ -70,18 +78,28 @@ public class GameOfLife {
     }
 
 
+    /**
+     * Game is paused.
+     */
     public void stop() {
         LOGGER.debug("mouseExited");
         this.state = State.INACTIVE;
     }
 
 
+    /**
+     * Game is running.
+     */
     public void start() {
         LOGGER.debug("mouseEntered");
         this.state = State.ACTIVE;
     }
 
 
+    /**
+     * Grid's {@link Cell}s are drawn on the GUI.
+     * @param g
+     */
     public void draw(Graphics g) {
         for (int x = 0; x < GRID_SIZE_IN_CELLS; x++) {
             for (int y = 0; y < GRID_SIZE_IN_CELLS; y++) {
@@ -93,5 +111,8 @@ public class GameOfLife {
     }
 
 
+    /**
+     * The two states of the game (running/paused).
+     */
     enum State {ACTIVE, INACTIVE}
 }

@@ -12,27 +12,44 @@ public class Cell {
     private final List<Cell> neighbors = new ArrayList<>();
 
 
+    /**
+     * Depending on the starting pattern, a {@link Cell} may need to be initialized with the ALIVE state.
+     */
     public void setAlive() {
         this.state.current = SubState.ALIVE;
         this.state.saved = SubState.ALIVE;
     }
 
 
+    /**
+     *
+     * @return true, if the cell is alive
+     */
     public boolean isAlive() {
         return this.state.saved == SubState.ALIVE;
     }
 
 
+    /**
+     * Adds a neighbor {@link Cell} to this {@link Cell}.
+     * @param neighbor
+     */
     public void addNeighbor(final Cell neighbor) {
         this.neighbors.add(neighbor);
     }
 
 
+    /**
+     * Saves the current state of the {@link Cell}, before it is triggered to transition to its next state.
+     */
     public void saveCurrentState() {
         this.state.saved = this.state.current; // Save previous state, so that neighbors can use that to determine their transition
     }
 
 
+    /**
+     * This {@link Cell} calculates and transitions to its next state.
+     */
     public void update() {
         int neighborsAlive = 0;
         for (Cell neighbor : neighbors) {
@@ -48,11 +65,16 @@ public class Cell {
     }
 
 
-
+    /**
+     *
+     */
     enum SubState {
         ALIVE, DEAD
     }
-    
+
+    /**
+     * The state of a cell.
+     */
     private class State {
         SubState saved = SubState.DEAD;
         SubState current = SubState.DEAD;

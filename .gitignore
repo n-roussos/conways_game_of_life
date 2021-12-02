@@ -29,5 +29,6 @@ hs_err_pid*
 # Gradle
 .gradle
 
-# Others
+# Build directories
 build
+out

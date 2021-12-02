@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yy.MM.dd-HH:mm:ss.SSS}[%p]%F(%L)%M-%m%n"/>
+        </Console>
+        <RollingFile name="LogToFile" fileName="build/logs/test.log"
+                     filePattern="build/logs/test.%d{yyyy-MM-dd_HH}.%i.log">
+            <PatternLayout pattern="%d{yy.MM.dd-HH:mm:ss.SSS}[%p]%F(%L)%M-%m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="LogToFile"/>
+        </Root>
+<!--        <Logger name="package.class" level="WARN"/>-->
+    </Loggers>
+</Configuration>

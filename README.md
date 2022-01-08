@@ -1,7 +1,7 @@
-# conways_game_of_life
- A Java implementation of Conway's Game of Life.
+# Conway's Game of Life
+A Java implementation of Conway's Game of Life.
+ 
  ---
-
 ### Authors
 - **George Evangelou** (Dipl. Eng. Electrical and Computer Engineering Department, Univ. of Patras, Greece)
   - Email: george_evangelou [at] windowslive.com
